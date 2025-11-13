@@ -1,16 +1,37 @@
-# React + Vite
+# 🚀 Project Name: To do List
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+To do list app helps users organize and manage their daily tasks efficiently. It allows adding, editing, deleting tasks and marking them as complete. With clean user friendly interface, it keeps users productive and focused by tracking their progress.
 
-Currently, two official plugins are available:
+## 📖 Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Demo](#demo)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Technologies Used](#technologies-used)
+- [Contributing](#contributing)
+- [License](#license)
 
-## React Compiler
+## 🎬 Demo
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+[Live Demo](https://your-live-demo-link.com)
 
-## Expanding the ESLint configuration
+![App Screenshot](screenshot.png)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ Features
+
+- Feature 1 – #
+- Feature 2 – #
+- Feature 3 – #
+- Feature 4 – #
+
+## 🛠 Installation and run
+
+✨ Clone the repo locally:
+
+1. Copy SSH key from repository, then in terminal put : git clone SSH key
+2. Then CD to your folder and put: npm create vite@latest ./ -- --template react
+   This will create newest Vite package in current directory using React template.
+3. After any prompts install project dependencies using NPM : npm install
+4. To start development server put command in your terminal : npm run dev
+5. Open browser and navigate to: http://localhost:5173
