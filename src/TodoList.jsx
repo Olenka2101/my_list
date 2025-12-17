@@ -1,5 +1,5 @@
 import TodoListItem from "./TodoListItem";
-function TodoList(props) {
+function TodoList() {
   const todolist = [
     { id: 1, title: "review resources" },
     { id: 2, title: "take notes" },
