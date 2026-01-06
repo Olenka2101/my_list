@@ -1,14 +1,16 @@
 import { useState } from "react";
 import TextInputWithLabel from "../../shared/TextInputWithLabel";
-function TodoListItem({ todo, onCompleteTodo, onUpdateToDo }) {
+function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
   const [isEditing, setIsEditing] = useState(false);
   const [workingTitle, setWorkingTitle] = useState(todo.title);
 
   function handleUpdate(event) {
     if (!isEditing) return;
     event.preventDefault();
-    onUpdateToDo({ ...todo, title: workingTitle });
-
+    onUpdateTodo({
+      ...todo,
+      title: workingTitle,
+    });
     setIsEditing(false);
   }
   const handleCancel = () => {
@@ -18,9 +20,7 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateToDo }) {
   const handleEdit = (event) => {
     setWorkingTitle(event.target.value);
   };
-  const updateEdit = () => {
-    setIsEditing(true);
-  };
+
   return (
     <li>
       <form>
