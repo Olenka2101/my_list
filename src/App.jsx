@@ -38,7 +38,7 @@ function App() {
       <TodoList
         todoList={todoList}
         onCompleteTodo={completeTodo}
-        onUpdateToDo={updateTodo}
+        onUpdateTodo={updateTodo}
       />
     </div>
   );

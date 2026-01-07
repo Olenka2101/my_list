@@ -47,14 +47,14 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
               />
             </label>
             <span onClick={() => setIsEditing(true)}>{todo.title}</span>
-            {/* <button
+            <button
               type="button"
               onClick={() => {
                 setIsEditing(true);
               }}
             >
               Edit
-            </button> */}
+            </button>
           </>
         )}
       </form>
