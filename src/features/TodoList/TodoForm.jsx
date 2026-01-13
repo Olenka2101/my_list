@@ -10,8 +10,8 @@ function TodoForm({ onAddTodo }) {
 
     onAddTodo(workingTodoTitle);
     setWorkingTodoTitle("");
-    // todoTitleInput.current.value = "";
-    // todoTitleInput.current.focus();
+    todoTitleInput.current.value = "";
+    todoTitleInput.current.focus();
   }
   return (
     <form onSubmit={handleAddTodo}>
