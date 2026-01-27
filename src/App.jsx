@@ -4,7 +4,16 @@ import TodoForm from "./features/TodoList/TodoForm.jsx";
 import TodoList from "./features/TodoList.jsx";
 
 import TodosViewForm from "./features/TodosViewForm.jsx";
-
+const url = `https://api.airtable.com/v0/${import.meta.env.VITE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
+const token = `Bearer ${import.meta.env.VITE_PAT}`;
+const encodeUrl = ({ sortField, sortDirection, queryString }) => {
+  let sortQuery = `sort[0][field]=${sortField}&sort[0][direction]=${sortDirection}`;
+  let searchQuery = "";
+  if (queryString) {
+    searchQuery = `&filterByFormula=SEARCH("${queryString}",+title)`;
+  }
+  return encodeURI(`${url}?${sortQuery}${searchQuery}`);
+};
 function App() {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -14,16 +23,16 @@ function App() {
   const [sortDirection, setSortDirection] = useState("desc");
   const [queryString, setQueryString] = useState("");
 
-  const url = `https://api.airtable.com/v0/${import.meta.env.VITE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
-  const token = `Bearer ${import.meta.env.VITE_PAT}`;
-  const encodeUrl = ({ sortField, sortDirection, queryString }) => {
-    let sortQuery = `sort[0][field]=${sortField}&sort[0][direction]=${sortDirection}`;
-    let searchQuery = "";
-    if (queryString) {
-      searchQuery = `&filterByFormula=SEARCH("${queryString}",+title)`;
-    }
-    return encodeURI(`${url}?${sortQuery}${searchQuery}`);
-  };
+  // const url = `https://api.airtable.com/v0/${import.meta.env.VITE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
+  // const token = `Bearer ${import.meta.env.VITE_PAT}`;
+  // const encodeUrl = ({ sortField, sortDirection, queryString }) => {
+  //   let sortQuery = `sort[0][field]=${sortField}&sort[0][direction]=${sortDirection}`;
+  //   let searchQuery = "";
+  //   if (queryString) {
+  //     searchQuery = `&filterByFormula=SEARCH("${queryString}",+title)`;
+  //   }
+  //   return encodeURI(`${url}?${sortQuery}${searchQuery}`);
+  // }; // MOVED ABOVE LINE 8 OUT OF THE COMPONENT, PER REVIEWER SUGGESTION
   useEffect(() => {
     const fetchTodos = async () => {
       setIsLoading(true);
