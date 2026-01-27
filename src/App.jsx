@@ -2,16 +2,28 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import TodoForm from "./features/TodoList/TodoForm.jsx";
 import TodoList from "./features/TodoList.jsx";
-import TodoListItem from "./features/TodoList/TodoListItem.jsx";
+
+import TodosViewForm from "./features/TodosViewForm.jsx";
 
 function App() {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isSaving, setIsSaving] = useState(false);
+  const [sortField, setSortField] = useState("createdTime");
+  const [sortDirection, setSortDirection] = useState("desc");
+  const [queryString, setQueryString] = useState("");
 
   const url = `https://api.airtable.com/v0/${import.meta.env.VITE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
   const token = `Bearer ${import.meta.env.VITE_PAT}`;
+  const encodeUrl = ({ sortField, sortDirection, queryString }) => {
+    let sortQuery = `sort[0][field]=${sortField}&sort[0][direction]=${sortDirection}`;
+    let searchQuery = "";
+    if (queryString) {
+      searchQuery = `&filterByFormula=SEARCH("${queryString}",+title)`;
+    }
+    return encodeURI(`${url}?${sortQuery}${searchQuery}`);
+  };
   useEffect(() => {
     const fetchTodos = async () => {
       setIsLoading(true);
@@ -23,7 +35,10 @@ function App() {
       };
 
       try {
-        const resp = await fetch(url, options);
+        const resp = await fetch(
+          encodeUrl({ sortField, sortDirection, queryString }),
+          options,
+        );
         if (!resp.ok) {
           throw new Error(resp.message);
         }
@@ -47,7 +62,7 @@ function App() {
       }
     };
     fetchTodos();
-  }, []);
+  }, [sortField, sortDirection, queryString]);
 
   // AddTodo!!!!!!!!!!!!!
 
@@ -113,8 +128,8 @@ function App() {
     const originalTodo = todoList.find((todo) => todo.id === editedTodo.id);
     setTodoList((prevTodos) =>
       prevTodos.map((todo) =>
-        todo.id === editedTodo.id ? { ...editedTodo } : todo
-      )
+        todo.id === editedTodo.id ? { ...editedTodo } : todo,
+      ),
     );
 
     const payload = {
@@ -152,8 +167,8 @@ function App() {
 
       setTodoList((prevTodos) =>
         prevTodos.map((todo) =>
-          todo.id === originalTodo.id ? { ...originalTodo } : todo
-        )
+          todo.id === originalTodo.id ? { ...originalTodo } : todo,
+        ),
       );
     } finally {
       setIsSaving(false);
@@ -161,6 +176,7 @@ function App() {
   };
   return (
     <div>
+      <h1>Todo List</h1>
       {isLoading && <p>loading...</p>}
       {isSaving && <p>Saving...</p>}
       <TodoForm onAddTodo={addTodo} />
@@ -171,6 +187,15 @@ function App() {
         isLoading={isLoading}
         isSaving={isSaving}
       />
+      <TodosViewForm
+        sortField={sortField}
+        setSortField={setSortField}
+        sortDirection={sortDirection}
+        setSortDirection={setSortDirection}
+        queryString={queryString}
+        setQueryString={setQueryString}
+      />
+
       {errorMessage && (
         <div>
           <hr />
