@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import "./App.css";
 import TodoForm from "./features/TodoList/TodoForm.jsx";
 import TodoList from "./features/TodoList.jsx";
-
 import TodosViewForm from "./features/TodosViewForm.jsx";
 
 function App() {
@@ -16,14 +15,14 @@ function App() {
 
   const url = `https://api.airtable.com/v0/${import.meta.env.VITE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
   const token = `Bearer ${import.meta.env.VITE_PAT}`;
-  const encodeUrl = ({ sortField, sortDirection, queryString }) => {
+  const encodeUrl = useCallback(() => {
     let sortQuery = `sort[0][field]=${sortField}&sort[0][direction]=${sortDirection}`;
     let searchQuery = "";
     if (queryString) {
       searchQuery = `&filterByFormula=SEARCH("${queryString}",+title)`;
     }
     return encodeURI(`${url}?${sortQuery}${searchQuery}`);
-  };
+  }, [sortField, sortDirection, queryString, url]);
   useEffect(() => {
     const fetchTodos = async () => {
       setIsLoading(true);
@@ -62,7 +61,7 @@ function App() {
       }
     };
     fetchTodos();
-  }, [sortField, sortDirection, queryString]);
+  }, [encodeUrl]);
 
   // AddTodo!!!!!!!!!!!!!
 
