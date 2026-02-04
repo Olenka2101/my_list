@@ -1,4 +1,13 @@
 import { useState, useEffect } from "react";
+import styled from "styled-components";
+const StyledButton = styled.button`
+  padding: 0.5em;
+`;
+
+const StyledInput = styled.input`
+  padding: 0.5em;
+`;
+
 function TodosViewForm({
   sortField,
   setSortField,
@@ -28,14 +37,14 @@ function TodosViewForm({
       <div>
         <label>
           Search todos:
-          <input
+          <StyledInput
             type="text"
             value={localQueryString}
             onChange={(e) => setLocalQueryString(e.target.value)}
           />
-          <button type="button" onClick={() => setLocalQueryString("")}>
+          <StyledButton type="button" onClick={() => setLocalQueryString("")}>
             Clear
-          </button>
+          </StyledButton>
         </label>
       </div>
 
