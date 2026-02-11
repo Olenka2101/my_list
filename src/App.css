@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: antiquewhite;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 3em;
+  
+}
+h1,
+h2 {
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+button {
+  background-color: rgb(249, 247, 246);
+  color: rgb(43, 41, 38);
+  border: 1px, solid, rgb(43, 41, 38);
+  padding: 0.5em;
+  border-radius: 0.6em;
+  font-size: 1em;
+  margin: 0.3em;
+}
+button:hover {
+  background-color: rgb(155, 153, 151);
+  color: aliceblue;
+}
+
+input[type="text"],
+select {
+  padding: 0.5em;
+  border: 1px, solid, rgb(43, 41, 38);
+  border-radius: 0.6em;
+  font-size: 1em;
+  margin: 0.3em;
+}
+/* label {
+  padding: 0.5em;
+} */

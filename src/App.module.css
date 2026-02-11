@@ -1,0 +1,23 @@
+.appMain {
+  background-color: #bbb7b7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 0.5em;
+  margin: 2em;
+  border-radius: 0.5em;
+}
+
+.errorMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid red;
+  padding: 0.6em;
+  margin: 0.8em;
+  border-radius: 0.5em;
+  background-color: #db7878;
+  color: rgb(33, 2, 2);
+}

@@ -3,6 +3,7 @@ import "./App.css";
 import TodoForm from "./features/TodoList/TodoForm.jsx";
 import TodoList from "./features/TodoList.jsx";
 import TodosViewForm from "./features/TodosViewForm.jsx";
+import styles from "./App.module.css";
 
 function App() {
   const [todoList, setTodoList] = useState([]);
@@ -171,8 +172,10 @@ function App() {
     }
   };
   return (
-    <div>
-      <h1>Todo List</h1>
+    <div className={styles.appMain}>
+      <header>
+        <h1>Todo List</h1>
+      </header>
       {isLoading && <p>loading...</p>}
       {isSaving && <p>Saving...</p>}
       <TodoForm onAddTodo={addTodo} />
@@ -193,9 +196,10 @@ function App() {
       />
 
       {errorMessage && (
-        <div>
+        <div className={styles.errorMessage}>
           <hr />
           <p>{errorMessage}</p>
+
           <button onClick={() => setErrorMessage("")}>
             Dismiss Error Message
           </button>
