@@ -26,7 +26,6 @@ function TodosViewForm({
 
   useEffect(() => {
     const debounce = setTimeout(() => {
-      // console.log("send to App:", localQueryString);
       queryStringChange(localQueryString);
     }, 500);
     return () => clearTimeout(debounce);

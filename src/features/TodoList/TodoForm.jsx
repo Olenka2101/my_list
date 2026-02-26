@@ -35,7 +35,6 @@ function TodoForm({ onAddTodo, isSaving }) {
         ref={todoTitleInput}
         value={workingTodoTitle}
         onChange={(event) => {
-          // event.preventDefault();
           setWorkingTodoTitle(event.target.value);
         }}
       />
